@@ -1,5 +1,4 @@
 import React from "react";
-import mui from "material-ui";
 
 const NewsList = React.createClass({
 

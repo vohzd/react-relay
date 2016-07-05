@@ -1,10 +1,24 @@
 {
   "name": "react-relay",
   "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "~1.5.2",
+    "express": "~4.7.2",
+    "http": "0.0.0",
+    "jsonwebtoken": "^5.0.2",
+    "method-override": "~2.1.2",
+    "mongoose": "4.4.16",
+    "morgan": "~1.2.2"
+  },
   "jspm": {
     "dependencies": {
+      "body-parser": "npm:body-parser@^1.15.2",
+      "jquery": "npm:jquery@^3.0.0",
       "jsx": "npm:jspm-loader-jsx@^0.0.7",
       "material-ui": "npm:material-ui@^0.15.1",
+      "method-override": "npm:method-override@^2.3.6",
+      "mongoose": "npm:mongoose@^4.5.3",
+      "morgan": "npm:morgan@^1.7.0",
       "react": "npm:react@^15.1.0",
       "react-dom": "npm:react-dom@^15.1.0"
     },
