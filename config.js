@@ -1,6 +1,7 @@
 System.config({
   baseURL: "/",
   defaultJSExtensions: true,
+  trace: true,
   transpiler: "babel",
   babelOptions: {
     "optional": [
@@ -26,6 +27,12 @@ System.config({
     "morgan": "npm:morgan@1.7.0",
     "react": "npm:react@15.1.0",
     "react-dom": "npm:react-dom@15.1.0",
+    "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0",
+    "github:capaj/systemjs-hot-reloader@0.6.0": {
+      "debug": "npm:debug@2.2.0",
+      "socket.io-client": "github:socketio/socket.io-client@1.4.8",
+      "weakee": "npm:weakee@1.0.0"
+    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
     },

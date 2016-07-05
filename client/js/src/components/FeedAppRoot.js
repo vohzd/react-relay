@@ -1,52 +1,32 @@
 import React from "react";
 import NewsList from "./NewsList.js";
-//import FeedManager from "./FeedManager.js";
+import FeedManager from "./FeedManager.js";
 import $ from "jquery";
-
-const FeedManager = React.createClass({
-
-
-	render(){
-
-		const Nodes = this.props.siteUrls.map((node) => {
-			return (
-				<div className="blah">efoefwhfow</div>
-			)
-		});
-		return(
-			{Nodes}
-		)
-
-	}
-
-})
 
 export default React.createClass({
 
 	getInitialState(){
-
-		return {
-			siteUrls: []
-		};
-
+		return {siteUrls: []};
 	},
 
 	loadCommentsFromServer(){
 
-		$.ajax({
-			type: "GET",
-			url: "/sites",
-			success: (response) => {
-				this.setState({siteUrls: response});
-			}
-		});
+		fetch("/sites")
+			.then(response => response.json())
+			.then(data => this.state.siteUrls = data)
+			.catch(e => console.log("err"))
+
+	},
+
+	componentWillMount(){
+
+		console.log("did mount");
+		this.loadCommentsFromServer();
 
 	},
 
 	componentDidMount(){
-
-		this.loadCommentsFromServer();
-
+		console.log(this.state.siteUrls);
 	},
 
 	onFormSubmit(data){
@@ -55,6 +35,8 @@ export default React.createClass({
 	},
 	
 	render(){
+
+		console.log("render root");
 
 		return (
 			<div className="FeedApp">
