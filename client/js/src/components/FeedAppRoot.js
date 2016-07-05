@@ -5,15 +5,6 @@ import $ from "jquery";
 
 const FeedManager = React.createClass({
 
-	componentDidMount(){
-		console.log("mouted");
-	},
-
-	getInitialState(){
-		return {
-			test: []
-		}
-	},
 
 	render(){
 
