@@ -1,7 +1,6 @@
 import React from "react";
-import NewsList from "./NewsList.js";
-import FeedManager from "./FeedManager.js";
-import $ from "jquery";
+import NewsList from "./NewsList.jsx!";
+import FeedManager from "./FeedManager.jsx!";
 
 export default React.createClass({
 
@@ -10,41 +9,29 @@ export default React.createClass({
 	},
 
 	loadCommentsFromServer(){
-
 		fetch("/sites")
 			.then(response => response.json())
 			.then(data => this.state.siteUrls = data)
 			.catch(e => console.log("err"))
-
 	},
 
 	componentWillMount(){
-
-		console.log("did mount");
 		this.loadCommentsFromServer();
-
 	},
 
-	componentDidMount(){
-		console.log(this.state.siteUrls);
-	},
-
-	onFormSubmit(data){
-		console.log("lol data");
-		console.log(data);
+	onFormSubmit(event){
+		console.log("this should be called");
+		console.log("location: root node.... invokee: child node");
+		console.log(event);
 	},
 	
 	render(){
-
-		console.log("render root");
-
 		return (
 			<div className="FeedApp">
 				<FeedManager siteUrls={this.state.siteUrls} onFormSubmit={this.onFormSubmit}/>
 				<NewsList />
 			</div>
 		)
-
 	}
 
 });
