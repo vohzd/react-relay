@@ -1,0 +1,32 @@
+import React from "react";
+import SiteItem from "./SiteItem.jsx!";
+
+const SiteList = React.createClass({
+
+	// returns a container of none or more SiteItems
+	render(){
+
+		return (
+			<div className="site-items-wrapper">
+				{this.wrapSiteItems(this.props.siteUrls)}
+			</div>
+		)
+
+	},
+
+	wrapSiteItems(siteUrls){
+
+		return (
+			siteUrls.map((site) => {
+				return (
+					<SiteItem siteMeta={site} />
+				)
+			})
+		)
+
+	}
+
+});
+
+
+export default SiteList;

@@ -19,10 +19,10 @@ export default React.createClass({
 		this.loadCommentsFromServer();
 	},
 
-	onFormSubmit(event){
-		console.log("this should be called");
-		console.log("location: root node.... invokee: child node");
-		console.log(event);
+	onFormSubmit(data){
+		let dupe = this.state.siteUrls;
+			dupe.push(data);
+		this.setState({siteUrls: dupe})
 	},
 	
 	render(){

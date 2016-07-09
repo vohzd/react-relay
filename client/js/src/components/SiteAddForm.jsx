@@ -16,26 +16,6 @@ const SiteAddForm = React.createClass({
 		}
 	},
 
-	handleSubmit(){
-		if (!this.state.url || !this.state.name){
-			Helpers.createNotification("Please enter both the fields :)");
-		}
-		else {
-			if (Helpers.validURL(this.state.url)){
-
-				// this one is a bit of a headfuck
-				// you need to call the property 'onFormSubmit', which is actually an attribute of the DOM node (see the parent component for reference)
-				//this.props.onFormSubmit({author: author, text: text});
-
-
-
-
-				// by passing it the data, this somehow magically sends a payload of json
-			}
-		}
-
-	},
-
 	sendFormToRoot(){
 		this.props.onFormSubmit(this.state)
 	},

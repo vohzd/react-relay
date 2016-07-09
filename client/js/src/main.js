@@ -1,6 +1,6 @@
 /*
 	The main entry point in this JSPM, es6, and react application.
-	This is very much a tree structure in that this is the root node.
+	This is very much a tree structure in that this is the root node...
 	First start by importing some libraries
 */
 

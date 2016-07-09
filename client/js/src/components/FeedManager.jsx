@@ -1,27 +1,24 @@
 import React from "react";
 import SiteAddForm from "./SiteAddForm.jsx!";
+import SiteList from "./SiteList.jsx!";
 
 const FeedManager = React.createClass({
-
-	update(){
-		console.log("theoretically this should be bypassed");
-		console.log("i was called from the middle layer");
-	},
 
 	render(){
 
 		// Temporary
 		let message = "";
 		if (this.props.siteUrls.length === 0){
-			message = "There are no sites!";
+			message = "There are no sites! Consider getting some added!";
 		}
 		else {
-			message = this.props.siteUrls
+			message = "Here's your existing sites";
 		}
 
 		return (
 			<div className="feedManager">
-				<div>{message}</div>
+				<div class="help-text-wrapper">{message}</div>
+				<SiteList siteUrls={this.props.siteUrls} />
 				<SiteAddForm onFormSubmit={this.props.onFormSubmit} />
 			</div>
 		)
