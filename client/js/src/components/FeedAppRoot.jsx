@@ -8,15 +8,30 @@ export default React.createClass({
 		return {siteUrls: []};
 	},
 
-	loadCommentsFromServer(){
+	loadAvailableFeeds(){
 		fetch("/sites")
 			.then(response => response.json())
 			.then(data => this.state.siteUrls = data)
 			.catch(e => console.log("err"))
 	},
 
+	addNewFeed(data){
+
+		fetch("/sites", {
+			"method": "post",
+			"headers": {
+				"content-type": "application/json"
+			},
+			"body": JSON.stringify(data)
+		}).then(response => response.text())
+		  .then(function(){
+		  	console.log("success");
+		  })
+
+	},
+
 	componentWillMount(){
-		this.loadCommentsFromServer();
+		this.loadAvailableFeeds();
 	},
 
 	onFormSubmit(data){

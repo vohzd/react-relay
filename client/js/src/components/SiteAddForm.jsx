@@ -23,12 +23,8 @@ const SiteAddForm = React.createClass({
 		else {		
 			if (Helpers.validURL(this.state.url)){
 				if (Helpers.isMatchInArray(this.props.siteUrls, this.state)){
-
-					console.log("here");
-					// Success!
 					Helpers.createNotification("Success");
 					this.sendFormToRoot();
-
 				}
 				else {
 					Helpers.createNotification("There's already a site with that url added :)");
@@ -38,7 +34,6 @@ const SiteAddForm = React.createClass({
 				Helpers.createNotification("Please enter a valid URL.");
 			}
 		}
-
 	},
 
 	sendFormToRoot(){

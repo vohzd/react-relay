@@ -21,4 +21,8 @@ module.exports = function(app){
 
 	});
 
+
+	// Post a brand spankin new site!
+	app.post("/site")
+
 }
