@@ -19,7 +19,7 @@ const FeedManager = React.createClass({
 			<div className="feedManager">
 				<div class="help-text-wrapper">{message}</div>
 				<SiteList siteUrls={this.props.siteUrls} />
-				<SiteAddForm onFormSubmit={this.props.onFormSubmit} />
+				<SiteAddForm siteUrls={this.props.siteUrls} onFormSubmit={this.props.onFormSubmit} />
 			</div>
 		)
 
