@@ -21,4 +21,28 @@ module.exports = function(app){
 
 	});
 
+	app.post("/sites", (request, response) => {
+
+		// create a new Model with the data from the 'POST' request
+		const model = new Sites(request.body);
+
+		model.save((error) => {
+			if (error){
+				// uh oh
+				response.send(error)
+			}
+			else {
+				// send the id back as that's useful!
+				console.log("i was successfull");
+				console.log(model);
+				console.log(request);
+				console.log(response);
+				response.json(model._id)
+			}
+		})
+
+
+
+	});
+
 }

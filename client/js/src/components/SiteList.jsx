@@ -19,7 +19,7 @@ const SiteList = React.createClass({
 		return (
 			siteUrls.map((site) => {
 				return (
-					<SiteItem siteMeta={site} />
+					<SiteItem key={site._id} siteMeta={site} />
 				)
 			})
 		)

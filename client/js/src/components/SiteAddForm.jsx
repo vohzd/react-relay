@@ -23,8 +23,6 @@ const SiteAddForm = React.createClass({
 		else {		
 			if (Helpers.validURL(this.state.url)){
 				if (Helpers.isMatchInArray(this.props.siteUrls, this.state)){
-
-					console.log("here");
 					// Success!
 					Helpers.createNotification("Success");
 					this.sendFormToRoot();

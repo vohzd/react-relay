@@ -3,9 +3,14 @@ const Schema 	= Mongoose.Schema;
 
 const SiteSchema = new Schema({
 
-	siteName: {type: String, required: true},
-	siteURL: {type: String, required: true}
+	name: {type: String, required: false},
+	url: {type: String, required: false}
 
 });
+
+SiteSchema.pre("save", (next) => {
+	console.log("hello");
+	next();
+})
 
 module.exports = Mongoose.model("sites", SiteSchema);
