@@ -9,15 +9,38 @@ export default React.createClass({
 		return {siteUrls: []};
 	},
 
+<<<<<<< HEAD
 	fetchSites(){
+=======
+	loadAvailableFeeds(){
+>>>>>>> origin/master
 		fetch("/sites")
 			.then(response => response.json())
 			.then(data => this.state.siteUrls = data)
 			.catch(e => console.log("err"))
 	},
 
+	addNewFeed(data){
+
+		fetch("/sites", {
+			"method": "post",
+			"headers": {
+				"content-type": "application/json"
+			},
+			"body": JSON.stringify(data)
+		}).then(response => response.text())
+		  .then(function(){
+		  	console.log("success");
+		  })
+
+	},
+
 	componentWillMount(){
+<<<<<<< HEAD
 		this.fetchSites();
+=======
+		this.loadAvailableFeeds();
+>>>>>>> origin/master
 	},
 
 	addItemToState(item){

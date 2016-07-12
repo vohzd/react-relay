@@ -21,6 +21,7 @@ module.exports = function(app){
 
 	});
 
+<<<<<<< HEAD
 	app.post("/sites", (request, response) => {
 
 		// create a new Model with the data from the 'POST' request
@@ -44,5 +45,10 @@ module.exports = function(app){
 
 
 	});
+=======
+
+	// Post a brand spankin new site!
+	app.post("/site")
+>>>>>>> origin/master
 
 }
