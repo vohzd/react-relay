@@ -15,7 +15,7 @@ const NewsList = React.createClass({
 		});
 
 		return(
-			<div className="newsList">
+			<div className="news-list">
 				<h4>testing</h4>
 				{items}
 			</div>
@@ -31,7 +31,7 @@ const NewsItem = React.createClass({
 
 		return(
 
-			<div className="newsItem">
+			<div className="news-item">
 				<h4>{this.props.title}</h4>
 				<p>{this.props.children}</p>
 			</div>
@@ -69,8 +69,8 @@ export default React.createClass({
 	render(){
 
 		return(
-			<div className="NewsContainer">
-				<h3>What's the haps man?</h3>
+			<div className="news-container-root main-viewport">
+				<h3><i className="fa fa-newspaper-o" aria-hidden="true"></i> You well read bastard, you</h3>
 				<NewsList newsData={this.state.feeds}/>
 			</div>
 		)

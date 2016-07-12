@@ -1,0 +1,168 @@
+$main-viewport-width: 61.8%;
+$aside-viewport-width: 100% - $main-viewport-width;
+$active-colour: #3f85c5;
+
+html, body
+{
+	margin: 0;
+	padding: 0;
+	font-family: 'Arima Madurai', sans-serif;
+}
+
+#feed-app-container
+{
+	width: $main-viewport-width + $aside-viewport-width;
+}
+
+.main-viewport
+{
+	width: $main-viewport-width;
+}
+
+.aside-viewport
+{
+	width: $aside-viewport-width;
+	font-family: 'Inconsolata', sans-serif;
+	float: right;
+}
+
+.help-text-wrapper
+{
+	float: left;
+	padding-bottom: 2%;
+}
+
+.site-item-wrapper
+{
+	padding-right: 5%;
+}
+
+.site-item 
+{
+	width: 100%;
+	float:left;
+}
+
+.site-item-name
+{
+	font-size: 1.2em;
+	float: left;
+}
+
+.site-item-delete
+{
+	float:left;
+	font-size: 16px;
+	padding-right:1%;
+}
+
+.site-item-url
+{
+	text-align: right;
+	font-size: 0.8em;
+}
+
+.site-item-url, .site-item-delete
+{
+	color: $active-colour;
+	opacity: 1;
+	transition: opacity 0.4s;
+}
+
+.site-item-url:hover, .site-item-delete:hover, .add-new-site-form-submit:hover
+{
+	cursor: pointer;
+	opacity: 0.4;
+}
+
+.add-new-site-form
+{
+	float:left;
+	width: 100%;
+	padding-top: 2%;
+	padding-left:calc(14px + 1%);
+}
+
+.add-new-site-form-header
+{
+	font-size: 1.2em;
+	color: $active-colour;
+	float: left;
+	width:83%;
+}
+
+.add-new-site-form input[type="text"]
+{
+	float: left;
+	padding: 2%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	width: 88%;
+	border: 0;
+	border-bottom: 1px solid lighten($active-colour, 20%);
+	outline: none;
+	letter-spacing: 2px;
+	transition: all 0.4s;
+}
+
+.add-new-site-form input[type="text"]:focus
+{
+	background: rgba(63,133,197, 0.075);
+	width: 84.5%;
+	padding-left: 5%;
+}
+
+.add-new-site-form input[type="text"]:active
+{
+	background: rgba(63,133,197, 0.075);
+	width: 84.5%;
+	padding-left: 5%;
+}
+
+.add-new-site-form input[type="text"]:hover
+{
+	background: rgba(63,133,197, 0.075);
+	width: 84.5%;
+	padding-left: 5%;
+}
+
+
+.add-new-site-row
+{
+	float: left;
+	width: 100%;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	font-family: 'Inconsolata', sans-serif;
+	letter-spacing: 2px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	font-family: 'Inconsolata', sans-serif;
+	letter-spacing: 2px;
+	opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	font-family: 'Inconsolata', sans-serif;
+	letter-spacing: 2px;
+	opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	font-family: 'Inconsolata', sans-serif;
+	letter-spacing: 2px;
+}
+
+
+.add-new-site-form-submit
+{
+    font-family: 'Inconsolata', sans-serif;
+    float: left;
+    background: none;
+    outline: none;
+    border: 0;
+    color: $active-colour;
+    font-size: 24px;
+    width: 17%;
+    opacity: 1;
+	transition: opacity 0.4s;
+}

@@ -44,12 +44,14 @@ const SiteAddForm = React.createClass({
 	render(){
 
 		return (
-			<form>
+			<form className="add-new-site-form">
 
-				<h2>Add a new feed</h2>
+				<div className="add-new-site-row">
+					<div className="add-new-site-form-header">New feed</div>
+					<div className="add-new-site-form-submit" onClick={this.checkInput}>Add <i className="fa fa-plus" aria-hidden="true"></i></div>
+				</div>
 				<input type="text" placeholder="Site URL" value={this.state.url} onChange={this.handleInputChange} id="site-url"/>
 				<input type="text" placeholder="Site Name" value={this.state.name} onChange={this.handleInputChange} id="site-name"/>
-				<input type="button" value="Add Site" onClick={this.checkInput}/>
 
 			</form>
 		)

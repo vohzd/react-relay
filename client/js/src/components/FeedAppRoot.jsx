@@ -12,10 +12,7 @@ export default React.createClass({
 	fetchSites(){
 		fetch("/sites")
 			.then(response => response.json())
-			.then((data) => {
-				this.addItemToState(data)
-			})
-			//.then(data => this.addItemToState(data))
+			.then(data => this.addItemToState(data))
 			.catch(e => console.log("err"))
 	},
 
@@ -29,7 +26,7 @@ export default React.createClass({
 		// i can only ever call setState and hence need to dupe the current vals
 		let dupe = this.state.siteUrls;
 
-			// thank you es6!
+			// thank you es2015!
 			dupe.push.apply(dupe, item);
 
 		// single source of truth!!
@@ -53,7 +50,7 @@ export default React.createClass({
 	
 	render(){
 		return (
-			<div className="FeedApp">
+			<div className="feed-app-root">
 				<FeedManager siteUrls={this.state.siteUrls} onFormSubmit={this.onFormSubmit}/>
 				<NewsList />
 			</div>

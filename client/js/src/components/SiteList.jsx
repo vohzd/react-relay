@@ -7,7 +7,7 @@ const SiteList = React.createClass({
 	render(){
 
 		return (
-			<div className="site-items-wrapper">
+			<div className="site-item-wrapper">
 				{this.wrapSiteItems(this.props.siteUrls)}
 			</div>
 		)

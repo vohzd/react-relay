@@ -6,6 +6,7 @@ const SiteItem = React.createClass({
 
 		return (
 			<div className="site-item">
+				<div className="site-item-delete"><i className="fa fa-trash" aria-hidden="true"></i></div>
 				<div className="site-item-name">{this.props.siteMeta.name}</div>
 				<div className="site-item-url">{this.props.siteMeta.url}</div>
 			</div>

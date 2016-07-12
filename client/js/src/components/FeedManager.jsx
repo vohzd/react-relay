@@ -11,13 +11,10 @@ const FeedManager = React.createClass({
 		if (this.props.siteUrls.length === 0){
 			message = "There are no sites! Consider getting some added!";
 		}
-		else {
-			message = "Here's your existing sites";
-		}
 
 		return (
-			<div className="feedManager">
-				<div class="help-text-wrapper">{message}</div>
+			<div className="feed-manager-root aside-viewport">
+				<div className="help-text-wrapper">{message}</div>
 				<SiteList siteUrls={this.props.siteUrls} />
 				<SiteAddForm siteUrls={this.props.siteUrls} onFormSubmit={this.props.onFormSubmit} />
 			</div>
