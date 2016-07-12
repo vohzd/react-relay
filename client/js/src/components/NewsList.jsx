@@ -1,56 +1,15 @@
 import React from "react";
+import NewsItem from "./NewsItem.jsx!";
 
 const NewsList = React.createClass({
-
-	render(){
-
-		const items = this.props.newsData.map(function(newsItem){
-
-			return (
-				<NewsItem key={newsItem.id} title={newsItem.siteTitle}>
-					{newsItem.content}
-				</NewsItem>
-			);
-
-		});
-
-		return(
-			<div className="news-list">
-				<h4>testing</h4>
-				{items}
-			</div>
-		)
-
-	}
-
-});
-
-const NewsItem = React.createClass({
-
-	render(){
-
-		return(
-
-			<div className="news-item">
-				<h4>{this.props.title}</h4>
-				<p>{this.props.children}</p>
-			</div>
-
-		);
-
-	}
-
-});
-
-export default React.createClass({
 
 	getInitialState(){
 		return {
 			feeds: [
 				{
 					id: 1,
-					content: "Boris has quit the race",
-					siteTitle: "BBC News"
+					content: "Nigel has quit the race",
+					siteTitle: "Twat News"
 				},
 				{
 					id: 2,
@@ -59,22 +18,40 @@ export default React.createClass({
 				},
 				{
 					id: 3,
-					content: "Biggie smals Biggie smalls biggie smalls",
+					content: "Time for curry",
 					siteTitle: "House of Vans"
 				}
 			]
 		}
 	},
 
+
 	render(){
 
-		return(
+		return (
 			<div className="news-container-root main-viewport">
 				<h3><i className="fa fa-newspaper-o" aria-hidden="true"></i> You well read bastard, you</h3>
-				<NewsList newsData={this.state.feeds}/>
+				{this.wrapNewsItems(this.state.feeds)}
 			</div>
 		)
 
+	},
+
+	wrapNewsItems(feedData){
+
+		console.log("theoretically being called here");
+
+		return (
+			feedData.map((feed) => {
+				return (
+					<NewsItem key={feed.id} title={feed.siteTitle} >
+						{feed.content}
+					</NewsItem>
+				)
+			})
+		)
 	}
 
 });
+
+export default NewsList;

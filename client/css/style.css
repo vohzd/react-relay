@@ -13,7 +13,8 @@ body {
   height: 100%; }
 
 .main-viewport {
-  width: 61.8%; }
+  width: 61.8%;
+  padding: 7%; }
 
 .aside-viewport {
   width: 38.2%;
