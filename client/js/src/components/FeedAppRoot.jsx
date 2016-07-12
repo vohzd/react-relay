@@ -12,7 +12,10 @@ export default React.createClass({
 	fetchSites(){
 		fetch("/sites")
 			.then(response => response.json())
-			.then(data => this.state.siteUrls = data)
+			.then((data) => {
+				this.addItemToState(data)
+			})
+			//.then(data => this.addItemToState(data))
 			.catch(e => console.log("err"))
 	},
 
@@ -21,11 +24,17 @@ export default React.createClass({
 	},
 
 	addItemToState(item){
+
 		// because the state always should be treated as immutible
 		// i can only ever call setState and hence need to dupe the current vals
 		let dupe = this.state.siteUrls;
-			dupe.push(item);
+
+			// thank you es6!
+			dupe.push.apply(dupe, item);
+
+		// single source of truth!!
 		this.setState({siteUrls: dupe})
+
 	},
 
 	onFormSubmit(data){
@@ -38,7 +47,7 @@ export default React.createClass({
 			}
 		}).then((returnedId) => {
 			data._id = returnedId;
-			this.addItemToState(data);
+			this.addItemToState([data]);
 		})
 	},
 	
