@@ -5,8 +5,7 @@ body {
   margin: 0 !important;
   padding: 0 !important;
   height: 100%;
-  width: 100%;
-  float: left; }
+  width: 100%; }
 
 #feed-app-container, .feed-app-root {
   float: left;
@@ -23,11 +22,28 @@ body {
   height: 100%;
   position: absolute; }
 
+.notifications-container {
+  transition: 0.7s all;
+  display: block;
+  opacity: 1;
+  position: fixed;
+  right: -30%;
+  top: 25%;
+  margin-bottom: 0%;
+  padding: 1%;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  border-radius: 8px;
+  z-index: 50; }
+
+.active-notification {
+  transition: 0.7s all;
+  margin-right: 35%; }
+
 .aside-bar-content {
-  float: left;
   padding-left: 2%;
   padding-top: 2%;
-  height: 98%;
+  height: 80%;
   background: rgba(246, 246, 246, 0.32); }
 
 .margin-tab {

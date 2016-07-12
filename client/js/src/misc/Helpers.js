@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 const Helpers = {
 
 	createNotification(stringMessage, displayTime){
@@ -6,7 +8,21 @@ const Helpers = {
 			return;
 		}
 		else {
-			console.log(stringMessage);
+			const $notesContainer = $(".notifications-container");
+			const timer = displayTime ? displayTime : 2000;
+			if (!($notesContainer).hasClass("active-notification")){
+				$notesContainer.html(stringMessage);
+				$notesContainer.addClass("active-notification");
+				setTimeout(() => {
+					this.createNotification("", undefined);
+				}, timer)
+			}
+			else {
+				$notesContainer.removeClass("active-notification");
+				setTimeout(() => {
+					$notesContainer.html("");
+				}, timer)
+			}
 		}
 	},
 
@@ -41,7 +57,6 @@ const Helpers = {
 				}
 			}
 		}
-
 
 	}
 

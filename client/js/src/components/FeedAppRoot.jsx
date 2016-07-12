@@ -53,6 +53,7 @@ export default React.createClass({
 			<div className="feed-app-root">
 				<FeedManager siteUrls={this.state.siteUrls} onFormSubmit={this.onFormSubmit}/>
 				<NewsList />
+				<div className="notifications-container"></div>
 			</div>
 		)
 	}

@@ -7,6 +7,10 @@ const SiteAddForm = React.createClass({
 		return {url: "", name: ""};
 	},
 
+	clearAllFormFields(){
+		this.setState({url: "", name: ""})
+	},
+
 	handleInputChange(event){
 		if (event.target.id.split("-")[1] == "url"){
 			this.setState({url: event.target.value});
@@ -18,21 +22,22 @@ const SiteAddForm = React.createClass({
 
 	checkInput(){
 		if (!this.state.url || !this.state.name){
-			Helpers.createNotification("Please fill out both forms")
+			Helpers.createNotification("Please fill out both forms", 3000)
 		}
 		else {		
 			if (Helpers.validURL(this.state.url)){
 				if (Helpers.isMatchInArray(this.props.siteUrls, this.state)){
 					// Success!
-					Helpers.createNotification("Success");
+					Helpers.createNotification("Success", 1000);
+					this.clearAllFormFields();
 					this.sendFormToRoot();
 				}
 				else {
-					Helpers.createNotification("There's already a site with that url added :)");
+					Helpers.createNotification("There's already a site with that url added :)", 3000);
 				}
 			}
 			else {
-				Helpers.createNotification("Please enter a valid URL.");
+				Helpers.createNotification("Please enter a valid URL.", 3000);
 			}
 		}
 	},
