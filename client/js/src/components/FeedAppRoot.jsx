@@ -9,38 +9,15 @@ export default React.createClass({
 		return {siteUrls: []};
 	},
 
-<<<<<<< HEAD
 	fetchSites(){
-=======
-	loadAvailableFeeds(){
->>>>>>> origin/master
 		fetch("/sites")
 			.then(response => response.json())
 			.then(data => this.state.siteUrls = data)
 			.catch(e => console.log("err"))
 	},
 
-	addNewFeed(data){
-
-		fetch("/sites", {
-			"method": "post",
-			"headers": {
-				"content-type": "application/json"
-			},
-			"body": JSON.stringify(data)
-		}).then(response => response.text())
-		  .then(function(){
-		  	console.log("success");
-		  })
-
-	},
-
 	componentWillMount(){
-<<<<<<< HEAD
 		this.fetchSites();
-=======
-		this.loadAvailableFeeds();
->>>>>>> origin/master
 	},
 
 	addItemToState(item){
@@ -52,19 +29,17 @@ export default React.createClass({
 	},
 
 	onFormSubmit(data){
-		const postReq = {method: "POST", body: data};
-
-		console.log(postReq);
-		// this only ever receives 'sane' values... hopefully!
-		fetch("/sites", postReq)
-			.then(response => response.json())
-			.then((databaseId) => {
-				data._id = databaseId;
-				return data;
-			})
-			.then((data) => {
-				this.addItemToState(data)
-			})
+		$.ajax({
+			type: "POST",
+			url: "/sites",
+			data: data,
+			success(res){
+				return res;
+			}
+		}).then((returnedId) => {
+			data._id = returnedId;
+			this.addItemToState(data);
+		})
 	},
 	
 	render(){

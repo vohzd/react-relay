@@ -21,11 +21,12 @@ module.exports = function(app){
 
 	});
 
-<<<<<<< HEAD
 	app.post("/sites", (request, response) => {
 
 		// create a new Model with the data from the 'POST' request
 		const model = new Sites(request.body);
+
+		console.log(request.body);
 
 		model.save((error) => {
 			if (error){
@@ -36,8 +37,8 @@ module.exports = function(app){
 				// send the id back as that's useful!
 				console.log("i was successfull");
 				console.log(model);
-				console.log(request);
-				console.log(response);
+				//console.log(request);
+				//console.log(response);
 				response.json(model._id)
 			}
 		})
@@ -45,10 +46,5 @@ module.exports = function(app){
 
 
 	});
-=======
-
-	// Post a brand spankin new site!
-	app.post("/site")
->>>>>>> origin/master
 
 }
