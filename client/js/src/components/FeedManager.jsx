@@ -14,9 +14,12 @@ const FeedManager = React.createClass({
 
 		return (
 			<div className="feed-manager-root aside-viewport">
+				<div className="margin-tab"></div>
 				<div className="help-text-wrapper">{message}</div>
-				<SiteList siteUrls={this.props.siteUrls} />
-				<SiteAddForm siteUrls={this.props.siteUrls} onFormSubmit={this.props.onFormSubmit} />
+				<div className="aside-bar-content">
+					<SiteList siteUrls={this.props.siteUrls} />
+					<SiteAddForm siteUrls={this.props.siteUrls} onFormSubmit={this.props.onFormSubmit} />
+				</div>
 			</div>
 		)
 
