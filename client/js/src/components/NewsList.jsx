@@ -38,9 +38,7 @@ const NewsList = React.createClass({
 	},
 
 	wrapNewsItems(feedData){
-
-		console.log("theoretically being called here");
-
+		
 		return (
 			feedData.map((feed) => {
 				return (
