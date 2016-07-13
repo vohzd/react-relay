@@ -30,7 +30,7 @@ export default React.createClass({
 			dupe.push.apply(dupe, item);
 
 		// single source of truth!!
-		this.setState({siteUrls: dupe})
+		this.setState({siteUrls: dupe});
 
 	},
 
@@ -52,7 +52,7 @@ export default React.createClass({
 		return (
 			<div className="feed-app-root">
 				<FeedManager siteUrls={this.state.siteUrls} onFormSubmit={this.onFormSubmit}/>
-				<NewsList />
+				<NewsList siteUrls={this.state.siteUrls} />
 				<div className="notifications-container"></div>
 			</div>
 		)

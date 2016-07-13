@@ -4,6 +4,8 @@ import NewsItem from "./NewsItem.jsx!";
 const NewsList = React.createClass({
 
 	getInitialState(){
+		console.log("you are here");
+		console.log(this.props.siteUrls);
 		return {
 			feeds: [
 				{
@@ -21,13 +23,17 @@ const NewsList = React.createClass({
 					content: "Time for curry",
 					siteTitle: "House of Vans"
 				}
-			]
+			],
+			testing: this.props.siteUrls
 		}
+	},
+
+	componentDidMount(){
+		console.log(this.state);
 	},
 
 
 	render(){
-
 		return (
 			<div className="news-container-root main-viewport">
 				<h3><i className="fa fa-newspaper-o" aria-hidden="true"></i> You well read bastard, you</h3>
