@@ -89,10 +89,11 @@ body
 
 .margin-tab i 
 {
-	margin-top: 50px;
-	margin-left: 4px;
-	color: #8fadc8;
-	font-size: 20px;
+    top: 45%;
+    margin-left: 4px;
+    color: #c5d6e6;
+    font-size: 20px;
+    position: absolute;
 }
 
 
@@ -165,9 +166,10 @@ body
 {
 	float: left;
 	padding: 2%;
+	padding-left: 0%;
 	margin-top: 1%;
 	margin-bottom: 1%;
-	width: 91%;
+	width: 94%;
 	border: 0;
 	border-bottom: 1px solid lighten($active-colour, 20%);
 	outline: none;
@@ -178,21 +180,21 @@ body
 .add-new-site-form input[type="text"]:focus
 {
 	background: rgba(63,133,197, 0.075);
-	width: 87%;
+	width: 89%;
 	padding-left: 5%;
 }
 
 .add-new-site-form input[type="text"]:active
 {
 	background: rgba(63,133,197, 0.075);
-	width: 87%;
+	width: 89%;
 	padding-left: 5%;
 }
 
 .add-new-site-form input[type="text"]:hover
 {
 	background: rgba(63,133,197, 0.075);
-	width: 87%;
+	width: 89%;
 	padding-left: 5%;
 }
 

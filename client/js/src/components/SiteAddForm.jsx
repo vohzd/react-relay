@@ -20,13 +20,19 @@ const SiteAddForm = React.createClass({
 		}
 	},
 
-	checkInput(){
+	checkInput(event){
+
+		if (event.type == "keypress" && event.charCode !== 13){
+			return;
+		}
+			
 		if (!this.state.url || !this.state.name){
 			Helpers.createNotification("Please fill out both forms", 3000)
 		}
 		else {		
 			if (Helpers.validURL(this.state.url)){
-				if (Helpers.isMatchInArray(this.props.siteUrls, this.state)){
+				if (Helpers.isNoMatchInArray(this.props.siteUrls, this.state)){
+					console.log(Helpers.isNoMatchInArray(this.props.siteUrls, this.state));
 					// Success!
 					Helpers.createNotification("Success", 1000);
 					this.clearAllFormFields();
@@ -55,8 +61,8 @@ const SiteAddForm = React.createClass({
 					<div className="add-new-site-form-header">New feed</div>
 					<div className="add-new-site-form-submit" onClick={this.checkInput}>Add <i className="fa fa-plus" aria-hidden="true"></i></div>
 				</div>
-				<input type="text" placeholder="Site URL" value={this.state.url} onChange={this.handleInputChange} id="site-url"/>
-				<input type="text" placeholder="Site Name" value={this.state.name} onChange={this.handleInputChange} id="site-name"/>
+				<input type="text" placeholder="Site URL" onKeyPress={this.checkInput} value={this.state.url} onChange={this.handleInputChange} id="site-url"/>
+				<input type="text" placeholder="Site Name" onKeyPress={this.checkInput} value={this.state.name} onChange={this.handleInputChange} id="site-name"/>
 
 			</form>
 		)

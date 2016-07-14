@@ -36,7 +36,7 @@ const Helpers = {
 		}
 	},
 
-	isMatchInArray(arrayToCheck, proposedValue){
+	isNoMatchInArray(arrayToCheck, proposedValue){
 
 		if (typeof arrayToCheck !== "object"){
 			console.log("well this went horribly wrong");
@@ -47,14 +47,24 @@ const Helpers = {
 				return true;
 			}
 			else {
+
+				let result = null;
+
 				for (let item of arrayToCheck){
+
 					if (item.url == proposedValue.url){
-						return false;
+						console.log("false condition");
+						result = false;
 					}
 					else {
-						return true;
+						console.log("true condition");
+						result = true;
 					}
 				}
+
+				console.log(result);
+				console.log("hello");
+
 			}
 		}
 
