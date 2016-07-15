@@ -36,36 +36,26 @@ const Helpers = {
 		}
 	},
 
-	isNoMatchInArray(arrayToCheck, proposedValue){
+	isUniqueURL(arrayToCheck, proposedValue){
 
+		// if the array isnt actually an array
 		if (typeof arrayToCheck !== "object"){
-			console.log("well this went horribly wrong");
 			return false;
 		}
+
+		// go forth and investigate
 		else {
-			if (!arrayToCheck.length){
-				return true;
-			}
-			else {
+			// i need to loop through teh entire array, and see if the proposedValue matches ANY of the values in arrayToCheck
+			// this is O(n) as increases linearly as array length increases
+			for (let item of arrayToCheck){
 
-				let result = null;
-
-				for (let item of arrayToCheck){
-
-					if (item.url == proposedValue.url){
-						console.log("false condition");
-						result = false;
-					}
-					else {
-						console.log("true condition");
-						result = true;
-					}
+				if (item.url == proposedValue.url){
+					return false;
 				}
 
-				console.log(result);
-				console.log("hello");
-
 			}
+			return true;
+
 		}
 
 	}

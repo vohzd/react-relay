@@ -1,11 +1,11 @@
 import React from "react";
 import NewsItem from "./NewsItem.jsx!";
+import $ from "jquery";
 
 const NewsList = React.createClass({
 
+	/*
 	getInitialState(){
-		console.log("you are here");
-		console.log(this.props.siteUrls);
 		return {
 			feeds: [
 				{
@@ -27,25 +27,62 @@ const NewsList = React.createClass({
 			testing: this.props.siteUrls
 		}
 	},
+	*/
+
+	getInitialState(){
+		return {
+			feedData: this.props.siteUrls
+		}
+	},
 
 	componentDidMount(){
-		console.log(this.state);
+
+		this.getFeedData();
+
+	},
+
+	getFeedData(){
+		setTimeout(() => {
+
+			// it begins
+
+			for (let source of this.props.siteUrls){
+
+				console.log(source);
+				$.ajax({
+					url: source.url,
+					datatype: "xml",
+					type: "GET",
+					success(response){
+						console.log(response);
+					}
+				})
+
+			}
+
+
+
+
+
+
+		}, 200)
 	},
 
 
 	render(){
 		return (
 			<div className="news-container-root main-viewport">
-				<h3><i className="fa fa-newspaper-o" aria-hidden="true"></i> You well read bastard, you</h3>
-				{this.wrapNewsItems(this.state.feeds)}
+				<h3><i className="fa fa-newspaper-o" aria-hidden="true"></i> You well read person, you</h3>
 			</div>
 		)
 
 	},
+				//{this.wrapNewsItems(this.state.feeds)}
 
 	wrapNewsItems(feedData){
 		
 		return (
+
 			feedData.map((feed) => {
 				return (
 					<NewsItem key={feed.id} title={feed.siteTitle} >

@@ -22,18 +22,21 @@ const SiteAddForm = React.createClass({
 
 	checkInput(event){
 
+		// if the user does a keypress that isnt the enter key, cancel this
 		if (event.type == "keypress" && event.charCode !== 13){
 			return;
 		}
-			
+
+		// if the user doesnt fill out both forms	
 		if (!this.state.url || !this.state.name){
 			Helpers.createNotification("Please fill out both forms", 3000)
 		}
-		else {		
+		else {
+			// 	if the user enters a valid url
 			if (Helpers.validURL(this.state.url)){
-				if (Helpers.isNoMatchInArray(this.props.siteUrls, this.state)){
-					console.log(Helpers.isNoMatchInArray(this.props.siteUrls, this.state));
-					// Success!
+
+				// if the user enters an unique url
+				if (Helpers.isUniqueURL(this.props.siteUrls, this.state)){
 					Helpers.createNotification("Success", 1000);
 					this.clearAllFormFields();
 					this.sendFormToRoot();
