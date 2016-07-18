@@ -1,5 +1,9 @@
 const Mongoose 	= require("mongoose");
 const Sites 	= require("./model.js");
+const cors		= require("cors");
+const http		= require("http");
+const request   = require("request");
+const parseString 	= require("xml2js").parseString;
 
 module.exports = function(app){
 
@@ -21,6 +25,37 @@ module.exports = function(app){
 
 	});
 
+
+	app.get("/getSiteData/*", (req, res) => {
+
+		const url = req.params[0];
+
+		request(url, (error, response, body) => {
+
+			if (!error && response.statusCode == 200){
+
+				// TODO... type checking for xml...
+				const contentType = response.headers["content-type"];
+
+				// used for xml -> json
+				parseString(body, (err, result) => {
+
+					if (!err){
+						res.json(result)
+					}
+
+				});
+
+			}
+			else {
+				console.log("fail");
+			}
+
+		});
+
+	});
+
+	// create a new news source
 	app.post("/sites", (request, response) => {
 
 		// create a new Model with the data from the 'POST' request
@@ -35,10 +70,6 @@ module.exports = function(app){
 			}
 			else {
 				// send the id back as that's useful!
-				console.log("i was successfull");
-				console.log(model);
-				//console.log(request);
-				//console.log(response);
 				response.json(model._id)
 			}
 		})

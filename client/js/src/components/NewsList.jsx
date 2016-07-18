@@ -48,10 +48,8 @@ const NewsList = React.createClass({
 
 			for (let source of this.props.siteUrls){
 
-				console.log(source);
 				$.ajax({
-					url: source.url,
-					datatype: "xml",
+					url: "/getSiteData/" + source.url,
 					type: "GET",
 					success(response){
 						console.log(response);
@@ -65,7 +63,7 @@ const NewsList = React.createClass({
 
 
 
-		}, 200)
+		}, 600)
 	},
 
 
