@@ -5,29 +5,157 @@ const NewsList = React.createClass({
 
 	getInitialState(){
 		return {
-			feedData: []
+			feedData: [
+				{
+					_id: 123456,
+					name: "site one",
+					entries: [
+						{
+							link: "http://example.com",
+							title: "this is a very good title"
+						},
+						{
+							link: "http://example.com",
+							title: "a second one"
+						},
+						{
+							link: "http://example.com",
+							title: "third one"
+						}
+					]
+				},
+				{
+					_id: 123457,
+					name: "site two",
+					entries: [
+						{
+							link: "http://example.com",
+							title: "this is a very good title 2"
+						},
+						{
+							link: "http://example.com",
+							title: "a second one 2"
+						},
+						{
+							link: "http://example.com",
+							title: "third one 2"
+						},
+						{
+							link: "http://example.com",
+							title: "a fourth one 2"
+						},
+						{
+							link: "http://example.com",
+							title: "fifth one 2"
+						}
+					]
+				}
+			]
 		}
 	},
 
 	addItemToState(item){
 
+		if (this.state.feedData.length === 0){
+			this.setState({feedData: item})
+		}
+
+		/*
+
 		// because the state always should be treated as immutible
 		// i can only ever call setState and hence need to dupe the current vals
 		let dupe = this.state.feedData;
 
+		console.log("before...");
+		console.log(dupe);
+
 			// thank you es2015!
 			dupe.push.apply(dupe, item);
+
+		console.log("after...");
+		console.log(dupe);
 
 		// single source of truth!!
 		this.setState({feedData: dupe});
 
+		console.log(this.state);
+
+		*/
+
 	},
 
 	componentDidMount(){
+
+
+/*
+		this.setState({feedData: [
+				{
+					_id: 123456,
+					name: "site one",
+					entries: [
+						{
+							link: "http://example.com",
+							title: "this is a very good title"
+						},
+						{
+							link: "http://example.com",
+							title: "a second one"
+						},
+						{
+							link: "http://example.com",
+							title: "third one"
+						}
+					]
+				},
+				{
+					_id: 123457,
+					name: "site two",
+					entries: [
+						{
+							link: "http://example.com",
+							title: "this is a very good title 2"
+						},
+						{
+							link: "http://example.com",
+							title: "a second one 2"
+						},
+						{
+							link: "http://example.com",
+							title: "third one 2"
+						},
+						{
+							link: "http://example.com",
+							title: "a fourth one 2"
+						},
+						{
+							link: "http://example.com",
+							title: "fifth one 2"
+						}
+					]
+				}
+			]
+		})
+
+
+
+
+
+
+*/
+
+
+
+
 		// fires once in the lifecycle... however will be replaced with setInterval as it will be needed to poll the db every now and again
+
+
+
+		/*
 		setTimeout( () => {
 			this.getFeedData();
 		}, 300);
+
+		*/
 	},
 
 	getFeedData(){
@@ -35,7 +163,11 @@ const NewsList = React.createClass({
 			fetch("/getSiteData/" + source.url)
 				.then(response => response.json())
 				.then(data => this.mergeAndPushNewsMeta(source, data))
-				.catch(e => console.log("err"))
+				.catch(function(e){
+					console.log("wat");
+					console.log(e);
+				})
+				//.catch(e => console.log("err"))
 		};
 	},
 
@@ -59,16 +191,14 @@ const NewsList = React.createClass({
 				console.log("unsupported property. debug!");
 			}
 
-		console.log("something is happening");
-
 		// plonk it within the state
 		this.addItemToState(newsItem);
 
-		console.log(this.state);
 
 	},
 
 	render(){
+
 		return (
 			<div className="news-container-root main-viewport">
 				<h3><i className="fa fa-newspaper-o" aria-hidden="true"></i> You well read person, you</h3>
@@ -79,12 +209,12 @@ const NewsList = React.createClass({
 	},
 
 	wrapNewsSources(feedData){
-		
+
 		return (
 
 			feedData.map((feed) => {
 				return (
-					<NewsSource key={feed.id} title={feed.siteTitle} entries={feed.entries} />
+					<NewsSource key={feed._id} title={feed.name} entries={feed.entries} />
 				)
 			})
 		)

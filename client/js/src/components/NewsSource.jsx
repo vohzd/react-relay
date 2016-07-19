@@ -5,6 +5,10 @@ const NewsSource = React.createClass({
 
 	render(){
 
+		console.log("sources");
+		console.log(this.props);
+
+
 		return(
 
 			<div className="news-item">
@@ -15,6 +19,8 @@ const NewsSource = React.createClass({
 		);
 
 	},
+
+	//				
 
 	wrapNewsItems(entries){
 

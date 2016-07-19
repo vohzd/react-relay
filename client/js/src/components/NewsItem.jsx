@@ -7,8 +7,8 @@ const NewsItem = React.createClass({
 		return(
 
 			<div className="news-item">
-				<a href={this.props.link[0]}>
-					{this.props.children[0]}
+				<a href={this.props.link}>
+					{this.props.children}
 				</a>
 			</div>
 
