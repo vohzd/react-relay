@@ -22,6 +22,11 @@ export default React.createClass({
 
 	addItemToState(item){
 
+		/* 
+			NOTE THE ROOT ELEMENT JUST OWNS THE SITEURLS
+			IT'S CHILD... 'NEWSLIST' (COMPONENT) OWNS THE *ACTUAL* NEWSITEM METADATA 
+		*/
+
 		// because the state always should be treated as immutible
 		// i can only ever call setState and hence need to dupe the current vals
 		let dupe = this.state.siteUrls;

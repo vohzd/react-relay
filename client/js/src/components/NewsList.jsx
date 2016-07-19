@@ -1,91 +1,90 @@
 import React from "react";
-import NewsItem from "./NewsItem.jsx!";
-import $ from "jquery";
+import NewsSource from "./NewsSource.jsx!";
 
 const NewsList = React.createClass({
 
-	/*
 	getInitialState(){
 		return {
-			feeds: [
-				{
-					id: 1,
-					content: "Nigel has quit the race",
-					siteTitle: "Twat News"
-				},
-				{
-					id: 2,
-					content: "go skateboarding",
-					siteTitle: "Slashdot"
-				},
-				{
-					id: 3,
-					content: "Time for curry",
-					siteTitle: "House of Vans"
-				}
-			],
-			testing: this.props.siteUrls
+			feedData: []
 		}
 	},
-	*/
 
-	getInitialState(){
-		return {
-			feedData: this.props.siteUrls
-		}
+	addItemToState(item){
+
+		// because the state always should be treated as immutible
+		// i can only ever call setState and hence need to dupe the current vals
+		let dupe = this.state.feedData;
+
+			// thank you es2015!
+			dupe.push.apply(dupe, item);
+
+		// single source of truth!!
+		this.setState({feedData: dupe});
+
 	},
 
 	componentDidMount(){
-
-		this.getFeedData();
-
+		// fires once in the lifecycle... however will be replaced with setInterval as it will be needed to poll the db every now and again
+		setTimeout( () => {
+			this.getFeedData();
+		}, 300);
 	},
 
 	getFeedData(){
-		setTimeout(() => {
-
-			// it begins
-
-			for (let source of this.props.siteUrls){
-
-				$.ajax({
-					url: "/getSiteData/" + source.url,
-					type: "GET",
-					success(response){
-						console.log(response);
-					}
-				})
-
-			}
-
-
-
-
-
-
-		}, 600)
+		for (let source of this.props.siteUrls){
+			fetch("/getSiteData/" + source.url)
+				.then(response => response.json())
+				.then(data => this.mergeAndPushNewsMeta(source, data))
+				.catch(e => console.log("err"))
+		};
 	},
 
+	mergeAndPushNewsMeta(siteMeta, itemsPayload){
+		// because i know what the name, url, and subsequently, what the news items payload is...
+		// merge them into the state here rather than having logic inside the fetch request
+		let newsItem = siteMeta;
+
+			// this is weird because i can be calling either xml (rss 2 / atom) or json...
+			// which means the root key has a weird name (e.g 'rss' or 'feed')... this just saves having to hardcode them
+
+			// within this there's also the sub object of 'channel', which has many properties including 'item' which contains the stuff we want
+			// else if 'entry' exists, that contains all the items
+			if (itemsPayload[Object.keys(itemsPayload)[0]].channel){
+				newsItem.entries = itemsPayload[Object.keys(itemsPayload)[0]].channel[0].item;
+			}
+			else if (itemsPayload[Object.keys(itemsPayload)[0]].entry){
+				newsItem.entries = itemsPayload[Object.keys(itemsPayload)[0]].entry;
+			}
+			else {
+				console.log("unsupported property. debug!");
+			}
+
+		console.log("something is happening");
+
+		// plonk it within the state
+		this.addItemToState(newsItem);
+
+		console.log(this.state);
+
+	},
 
 	render(){
 		return (
 			<div className="news-container-root main-viewport">
 				<h3><i className="fa fa-newspaper-o" aria-hidden="true"></i> You well read person, you</h3>
+				{this.wrapNewsSources(this.state.feedData)}
 			</div>
 		)
 
 	},
-				//{this.wrapNewsItems(this.state.feeds)}
 
-	wrapNewsItems(feedData){
+	wrapNewsSources(feedData){
 		
 		return (
 
 			feedData.map((feed) => {
 				return (
-					<NewsItem key={feed.id} title={feed.siteTitle} >
-						{feed.content}
-					</NewsItem>
+					<NewsSource key={feed.id} title={feed.siteTitle} entries={feed.entries} />
 				)
 			})
 		)
