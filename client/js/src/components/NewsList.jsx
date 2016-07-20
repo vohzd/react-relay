@@ -60,58 +60,13 @@ const NewsList = React.createClass({
 
 	addItemToState(item){
 
-		console.log("attempting state addition....");
-		console.log(item);
-		console.log(this.state);
-
 		let copy = this.state.feedData;
-
 			copy.push(item);
-
-
-			this.setState({feedData: copy});
-
-
-		/*
-
-		if (this.state.feedData.length === 0){
-
-			console.log("theoretically this should fire!?!");
-			this.setState({feedData: item});
-
-			console.log(this.state);
-		}
-
-		*/
-
-		/*
-
-		// because the state always should be treated as immutible
-		// i can only ever call setState and hence need to dupe the current vals
-		let dupe = this.state.feedData;
-
-		console.log("before...");
-		console.log(dupe);
-
-			// thank you es2015!
-			dupe.push.apply(dupe, item);
-
-		console.log("after...");
-		console.log(dupe);
-
-		// single source of truth!!
-		this.setState({feedData: dupe});
-
-		console.log(this.state);
-
-		*/
+		this.setState({feedData: copy});
 
 	},
 
 	componentDidMount(){
-
-		//console.log("hi!!!");
-
 
 		// fires once in the lifecycle... however will be replaced with setInterval as it will be needed to poll the db every now and again
 		setTimeout( () => {
@@ -126,11 +81,7 @@ const NewsList = React.createClass({
 			fetch("/getSiteData/" + source.url)
 				.then(response => response.json())
 				.then(data => this.mergeAndPushNewsMeta(source, data))
-				.catch(function(e){
-					console.log("wat");
-					console.log(e);
-				})
-				//.catch(e => console.log("err"))
+				.catch(e => console.log("err"))
 		};
 	},
 
@@ -162,10 +113,6 @@ const NewsList = React.createClass({
 
 	render(){
 
-		setTimeout(()=>{
-			console.log(this.state);
-		}, 500)
-
 		return (
 			<div className="news-container-root main-viewport">
 				<h3><i className="fa fa-newspaper-o" aria-hidden="true"></i> You well read person, you</h3>
@@ -175,14 +122,8 @@ const NewsList = React.createClass({
 
 	},
 
-	//				
 
 	wrapNewsSources(feedData){
-
-		console.log("/*****************/");
-		console.log("wrapping");
-		console.log(feedData);
-		console.log("/******************/");
 
 		return (
 
