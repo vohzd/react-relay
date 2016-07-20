@@ -54,6 +54,7 @@ export default React.createClass({
 	},
 	
 	render(){
+		
 		return (
 			<div className="feed-app-root">
 				<FeedManager siteUrls={this.state.siteUrls} onFormSubmit={this.onFormSubmit}/>

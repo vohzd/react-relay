@@ -5,6 +5,9 @@ const NewsList = React.createClass({
 
 	getInitialState(){
 		return {
+			feedData: []
+
+			/*
 			feedData: [
 				{
 					_id: 123456,
@@ -51,14 +54,35 @@ const NewsList = React.createClass({
 					]
 				}
 			]
+			*/
 		}
 	},
 
 	addItemToState(item){
 
+		console.log("attempting state addition....");
+		console.log(item);
+		console.log(this.state);
+
+		let copy = this.state.feedData;
+
+			copy.push(item);
+
+
+			this.setState({feedData: copy});
+
+
+		/*
+
 		if (this.state.feedData.length === 0){
-			this.setState({feedData: item})
+
+			console.log("theoretically this should fire!?!");
+			this.setState({feedData: item});
+
+			console.log(this.state);
 		}
+
+		*/
 
 		/*
 
@@ -86,79 +110,18 @@ const NewsList = React.createClass({
 
 	componentDidMount(){
 
-
-/*
-		this.setState({feedData: [
-				{
-					_id: 123456,
-					name: "site one",
-					entries: [
-						{
-							link: "http://example.com",
-							title: "this is a very good title"
-						},
-						{
-							link: "http://example.com",
-							title: "a second one"
-						},
-						{
-							link: "http://example.com",
-							title: "third one"
-						}
-					]
-				},
-				{
-					_id: 123457,
-					name: "site two",
-					entries: [
-						{
-							link: "http://example.com",
-							title: "this is a very good title 2"
-						},
-						{
-							link: "http://example.com",
-							title: "a second one 2"
-						},
-						{
-							link: "http://example.com",
-							title: "third one 2"
-						},
-						{
-							link: "http://example.com",
-							title: "a fourth one 2"
-						},
-						{
-							link: "http://example.com",
-							title: "fifth one 2"
-						}
-					]
-				}
-			]
-		})
-
-
-
-
-
-
-*/
-
-
+		//console.log("hi!!!");
 
 
 		// fires once in the lifecycle... however will be replaced with setInterval as it will be needed to poll the db every now and again
-
-
-
-		/*
 		setTimeout( () => {
 			this.getFeedData();
 		}, 300);
 
-		*/
 	},
 
 	getFeedData(){
+
 		for (let source of this.props.siteUrls){
 			fetch("/getSiteData/" + source.url)
 				.then(response => response.json())
@@ -199,6 +162,10 @@ const NewsList = React.createClass({
 
 	render(){
 
+		setTimeout(()=>{
+			console.log(this.state);
+		}, 500)
+
 		return (
 			<div className="news-container-root main-viewport">
 				<h3><i className="fa fa-newspaper-o" aria-hidden="true"></i> You well read person, you</h3>
@@ -208,13 +175,22 @@ const NewsList = React.createClass({
 
 	},
 
+	//				
+
 	wrapNewsSources(feedData){
+
+		console.log("/*****************/");
+		console.log("wrapping");
+		console.log(feedData);
+		console.log("/******************/");
 
 		return (
 
 			feedData.map((feed) => {
 				return (
-					<NewsSource key={feed._id} title={feed.name} entries={feed.entries} />
+					<NewsSource key={feed._id} title={feed.name}>
+						{feed.entries}
+					</NewsSource>
 				)
 			})
 		)
